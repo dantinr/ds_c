@@ -4,58 +4,49 @@
 #include <stdlib.h>
 #define MAX 10          //存储元素个数
 
-
-typedef struct
+typedef struct RecordType
 {
-    int key;            //排序键值
-    //int node;
-} RecordType;
-
-typedef RecordType List[MAX];
+    int key;
+    //DataType node;
+}List;
 
 
-//冒泡排序
-void BubbleSort(List R,int n)
+void BubbleSort(List arr[],int length)
 {
     int i,j,endsort;
-    RecordType tmp;
 
-    for(i=1;i<=n-1;i++)
+    for(i=1;i<=length;i++)
     {
-        endsort = 0;
-        for(j=1;j<=n-i-1;j++)
+        endsort = 0;        // 0 结束排序
+        for(j=1;j<=length-i;j++)
         {
-            if(R[j].key > R[j+1].key)
+            arr[0] = arr[j+1];
+            if(arr[j].key>arr[j+1].key)
             {
-                tmp = R[j];
-                R[j] = R[j+1];
-                R[j+1] = tmp;
-                endsort = 1;
+                arr[j+1] = arr[j];
+                arr[j] = arr[0];
             }
+            endsort = 1;        //继续
         }
-        if(endsort==0){
-            break;
-        }
-    }
-}
 
+        if(endsort==0){break;}
+    }
+
+}
 
 int main()
 {
-    //待排序序列 arr
-    RecordType arr[MAX+1];      //
-    //初始化序列
+    List arr[MAX+1];
     for(int i=1;i<=MAX;i++)
     {
         int rd = rand()%98;
-        printf("%d ",rd);
         arr[i].key = rd;
     }
 
     printf("\n******************************\n");
     for(int j=1;j<=MAX;j++)
     {
-        printf("%d ",arr[j].key);
+        printf("[%d]=%d ",j,arr[j].key);
     }
 
     printf("\n");
@@ -67,10 +58,11 @@ int main()
 
     for(int j=1;j<=MAX;j++)
     {
-        printf("%d ",arr[j].key);
+        printf("[%d]=%d ",j,arr[j].key);
     }
 
     printf("\n");
 
+    return 0;
 
 }
