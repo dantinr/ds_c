@@ -5,28 +5,28 @@
 #define MAX 10          //存储元素个数
 
 
-typedef struct
+typedef struct RecordType
 {
     int key;            //排序键值
-} RecordType;
-
-typedef RecordType List[MAX+1];
+    // Datatype xxx;
+} R;
 
 
 //冒泡排序
-void BubbleSort(List R,int n)
+void BubbleSort(R arr[],int length)
 {
     int i,j,endsort;
-    for(i=1;i<=n;i++)
+    R tmp;
+    for(i=1;i<=length;i++)
     {
         endsort = 0;
-        for(j=1;j<=n-i;j++)
+        for(j=1;j<=length-i;j++)
         {
-            if(R[j].key > R[j+1].key)
+            if(arr[j].key > arr[j+1].key)
             {
-                R[0] = R[j];
-                R[j] = R[j+1];
-                R[j+1] = R[0];
+                tmp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = tmp;
                 endsort = 1;
             }
         }
@@ -38,38 +38,25 @@ void BubbleSort(List R,int n)
 
 int main()
 {
-    printf("\n数组长度 %d\n",MAX);
-    //待排序序列 arr
-    List arr;      //
-    //初始化序列
-    for(int i=1;i<=MAX;i++)
-    {
-        int rd = rand()%100;
-        //printf("%d ",rd);
-        arr[i].key = rd;
-    }
-
-    printf("\n******************************\n");
-    for(int j=1;j<=MAX;j++)
-    {
-        printf("[%d]=%d ",j,arr[j].key);
-    }
-
-    printf("\n");
-
-    printf("\n************冒泡排序***********\n");
-    //冒泡排序
+    //初始化 无序表
     int length = 5;
-    printf("\n数组长度 %d\n",MAX);
-    printf("\n存储元素个数 %d\n",length);
+    R arr[length+1];
+    for(int i=1;i<=length;i++)
+    {
+        int rd = rand() % 100;
+        arr[i].key = rd;
+        printf("[%d]=%d ",i,rd);
+    }
+    printf("\n冒泡排序\n");
     BubbleSort(arr,length);
 
-    for(int j=1;j<length;j++)
+    for(int i=1;i<=length;i++)
     {
-        printf("[%d]=%d ",j,arr[j].key);
+        printf("[%d]=%d ",i,arr[i].key);
     }
-
     printf("\n");
 
+
+    return 0;
 
 }
