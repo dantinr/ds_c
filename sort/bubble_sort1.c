@@ -1,4 +1,4 @@
-//冒泡排序
+//冒泡排序 使用 tmp变量
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,17 +14,18 @@ typedef struct RecordType
 void BubbleSort(List arr[],int length)
 {
     int i,j,endsort;
+    List tmp;
 
-    for(i=1;i<=length;i++)
+    for(i=0;i<length;i++)
     {
         endsort = 0;        // 0 结束排序
-        for(j=1;j<=length-i;j++)
+        for(j=0;j<length-i-1;j++)
         {
-            arr[0] = arr[j+1];
             if(arr[j].key>arr[j+1].key)
             {
+                tmp = arr[j+1];
                 arr[j+1] = arr[j];
-                arr[j] = arr[0];
+                arr[j] = tmp;
             }
             endsort = 1;        //继续
         }
@@ -36,15 +37,15 @@ void BubbleSort(List arr[],int length)
 
 int main()
 {
-    List arr[MAX+1];
-    for(int i=1;i<=MAX;i++)
+    List arr[MAX];
+    for(int i=0;i<MAX;i++)
     {
         int rd = rand()%98;
         arr[i].key = rd;
     }
 
     printf("\n******************************\n");
-    for(int j=1;j<=MAX;j++)
+    for(int j=0;j<MAX;j++)
     {
         printf("[%d]=%d ",j,arr[j].key);
     }
@@ -56,7 +57,7 @@ int main()
     int length = 10;
     BubbleSort(arr,length);
 
-    for(int j=1;j<=MAX;j++)
+    for(int j=0;j<MAX;j++)
     {
         printf("[%d]=%d ",j,arr[j].key);
     }
