@@ -1,4 +1,4 @@
-//冒泡排序 使用 tmp变量
+//冒泡排序  使用arr[0] 岗哨
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,10 +16,10 @@ void BubbleSort(List arr[],int length)
     int i,j,endsort;
     List tmp;
 
-    for(i=0;i<length;i++)
+    for(i=1;i<=length;i++)
     {
         endsort = 0;        // 0 结束排序
-        for(j=0;j<length-i-1;j++)
+        for(j=1;j<=length-i;j++)
         {
             if(arr[j].key>arr[j+1].key)
             {
@@ -37,15 +37,15 @@ void BubbleSort(List arr[],int length)
 
 int main()
 {
-    List arr[MAX];
-    for(int i=0;i<MAX;i++)
+    List arr[MAX+1];
+    for(int i=1;i<=MAX;i++)
     {
         int rd = rand()%98;
         arr[i].key = rd;
     }
 
     printf("\n******************************\n");
-    for(int j=0;j<MAX;j++)
+    for(int j=1;j<=MAX;j++)
     {
         printf("[%d]=%d ",j,arr[j].key);
     }
@@ -57,7 +57,7 @@ int main()
     int length = 10;
     BubbleSort(arr,length);
 
-    for(int j=0;j<MAX;j++)
+    for(int j=1;j<=MAX;j++)
     {
         printf("[%d]=%d ",j,arr[j].key);
     }
